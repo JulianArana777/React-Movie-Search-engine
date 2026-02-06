@@ -19,7 +19,7 @@ function Home() {
         e.preventDefault();
         alert(searchquery)
     }
-    const [searchquery,setsearchquery] = useState(" ");
+    const [searchquery,setsearchquery] = useState("");
 
 
 
@@ -35,7 +35,8 @@ function Home() {
                  </form>
             <div className="movie-grid">
                 {movies.map(movie => 
-                    <MovieCard movie={movie} key={movie.id}></MovieCard>
+                    (movie.tittle.toLocaleLowerCase().startsWith(searchquery)
+                    && <MovieCard movie={movie} key={movie.id}></MovieCard>)
                 )}
             </div>
 
