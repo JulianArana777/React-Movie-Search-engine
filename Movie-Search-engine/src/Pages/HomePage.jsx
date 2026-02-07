@@ -5,14 +5,21 @@ import '../css/Home.css'
 
 function Home() {
 
-
-
-
-
-
-    const HandleSearch = (e) => {
+    const HandleSearch = async (e) => {
         e.preventDefault();
-        alert(searchquery)
+        if(!searchquery.trim())return
+        if(loading)return
+        setLoading(true)
+        try{
+            const searchmov = await getSearchMovies(searchquery)
+            setMovies(searchmov)
+            seterror(null)
+        }catch (err){
+            console.log(err)
+            seterror("failed to search movies ...")
+        }finally{setLoading(false)}
+
+        
     }
     const [searchquery, setsearchquery] = useState("");
     const [movies, setMovies] = useState([])
