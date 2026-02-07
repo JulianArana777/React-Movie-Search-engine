@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Route,Routes } from 'react-router-dom'
+import { MovieProvider } from './context/MovieContext'
 import './css/App.css'
 import Home from './Pages/HomePage'
 import Favorite from './Pages/FavoritePage'
@@ -12,7 +13,7 @@ function App() {
   return (
   
     
-    <div>
+    <MovieProvider>
       
       <NavBar></NavBar>
   <main className='main-content'>
@@ -21,7 +22,7 @@ function App() {
       <Route path='/favorites' element={<Favorite></Favorite>}></Route>
     </Routes>
   </main>
-  </div>
+  </MovieProvider>
   )
 
 }
